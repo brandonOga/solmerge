@@ -8,6 +8,27 @@ import Button from "@/components/Button";
 import { playReveal } from "@/components/Reveal";
 import { SERVICES } from "@/lib/content";
 
+// Each sentence ending in a full stop goes on its own line
+const sentences = (text: string) =>
+  text
+    .split(/(?<=\.)\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+// "Heading: detail" puts the detail on indented lines below the heading,
+// one per semicolon-separated part (and per sentence)
+function splitItem(text: string) {
+  const i = text.indexOf(":");
+  if (i === -1) return { head: sentences(text), subs: [] };
+  return {
+    head: sentences(text.slice(0, i)),
+    subs: text
+      .slice(i + 1)
+      .split(";")
+      .flatMap(sentences),
+  };
+}
+
 export default function ServicesTabs() {
   const [active, setActive] = useState(SERVICES[0].key);
   const panel = SERVICES.find((s) => s.key === active) ?? SERVICES[0];
@@ -90,9 +111,25 @@ export default function ServicesTabs() {
           <div className="panel-copy" data-reveal="right">
             <h4 className="panel-title">{panel.title}</h4>
             <ul className="offer-list">
-              {panel.items.map((text) => (
-                <li key={text}>{text}</li>
-              ))}
+              {panel.items.map((text) => {
+                const { head, subs } = splitItem(text);
+                return (
+                  <li key={text}>
+                    {head.map((line) => (
+                      <span key={line} className="offer-line">
+                        {line}
+                      </span>
+                    ))}
+                    {subs.length > 0 && (
+                      <ul className="offer-sublist">
+                        {subs.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
             <Button href="#contact" variant="light" className="panel-cta">
               Enquire Now

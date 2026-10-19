@@ -14,20 +14,20 @@ const CHANNELS = [
   {
     icon: FaWhatsapp,
     title: "Send us a message",
-    label: "+263 77 000 0000",
-    href: "https://wa.me/263770000000",
+    label: "+263 71 744 6715",
+    href: "https://wa.me/263717446715",
   },
   {
     icon: FaPhoneVolume,
     title: "Call us",
-    label: "+263 71 000 0000",
-    href: "tel:+263710000000",
+    label: "+263 71 744 6715",
+    href: "tel:+263717446715",
   },
   {
     icon: FaEnvelope,
     title: "Send an email",
-    label: "info@solmerge.com",
-    href: "mailto:info@solmerge.com",
+    label: "solmergefa@gmail.com",
+    href: "mailto:solmergefa@gmail.com",
   },
   {
     icon: FaLocationDot,
@@ -36,6 +36,9 @@ const CHANNELS = [
     href: "https://maps.google.com/?q=6+Rivonia+Road,+Mt+Pleasant,+Harare",
   },
 ];
+
+// Hidden until the real profiles exist. Set to true to show the block again.
+const SHOW_SOCIALS = false;
 
 // TODO: replace with the real profile URLs.
 const SOCIALS = [
@@ -84,24 +87,28 @@ export default function SiteFooter() {
               ))}
             </div>
 
-            <h3 className="socials-title h4" data-reveal="mask">
-              Find us on social media
-            </h3>
-            <div className="socials">
-              {SOCIALS.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="social"
-                  aria-label={label}
-                  data-reveal="up"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            {SHOW_SOCIALS && (
+              <>
+                <h3 className="socials-title h4" data-reveal="mask">
+                  Find us on social media
+                </h3>
+                <div className="socials">
+                  {SOCIALS.map(({ icon: Icon, label, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      className="social"
+                      aria-label={label}
+                      data-reveal="up"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <ContactForm />

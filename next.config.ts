@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Let the dev server (HMR socket, dev assets) answer when the site is opened
+  // by LAN/virtual-adapter IP rather than localhost.
+  allowedDevOrigins: ["172.29.16.1"],
 };
 
 export default nextConfig;

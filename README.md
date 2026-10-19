@@ -28,3 +28,13 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run build` — production build
 - `npm run start` — serve the production build
 - `npm run lint` — lint with ESLint
+
+## Contact form email
+
+The enquiry form (`src/components/ContactForm.tsx`) is sent by the server action in `src/app/actions/enquiry.ts`, through Gmail SMTP, to the SolMerge inbox. Replying to an enquiry email goes to the person who sent it.
+
+Set these environment variables in `.env.local` for development, and in the hosting provider's settings for production:
+
+- `SMTP_USER`: the Gmail address that sends and receives enquiries (`solmergefa@gmail.com`)
+- `SMTP_PASS`: a Gmail App Password for that account (Google Account → Security → 2-Step Verification → App passwords)
+- `ENQUIRY_TO` (optional): a different address to receive enquiries

@@ -874,6 +874,19 @@ html.menu-open {
   color: #fff;
 }
 
+.offer-line {
+  display: block;
+}
+
+.offer-sublist {
+  margin: 6px 0 0;
+  padding-left: 1.25em;
+  list-style: circle;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 /* ---------- Industries ---------- */
 
 .industries-grid {
@@ -1188,6 +1201,16 @@ html.menu-open {
 .enquiry-submit:hover {
   background: var(--navy-2);
   color: #fff;
+}
+
+.enquiry-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.enquiry-error {
+  margin: 0;
+  color: #ffb4a8;
 }
 
 .enquiry-thanks {
