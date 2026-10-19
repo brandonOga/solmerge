@@ -16,9 +16,13 @@ export const SERVICES: Service[] = [
     intro:
       "Planning, compliance and advisory that strengthen financial performance and support confident, strategic decisions.",
     items: [
+      "Book keeping and Financial statements preparation",
+      "Payroll administration and accounting",
+      "Audit and Assurance services: Internal audit, internal controls implementation and review, Risk management. External audit preparation and readiness.",
+      "Statutory compliance: ZIMRA, ZIMDEF, NSSA",
       "Financial Planning & Budgeting",
-      "Tax Advisory & Compliance",
-      "Audit & Assurance Services: Internal Audits",
+      "Tax Advisory and Compliance",
+      "Audit and Assurance Services: Internal Audits",
       "Investment Advisory",
       "Corporate Finance Advisory",
       "Business Performance, Strategy Consulting & Capacity Building",
@@ -32,7 +36,7 @@ export const SERVICES: Service[] = [
     intro:
       "Actuarial precision applied to forecast, quantify and safeguard the future of your organisation.",
     items: [
-      "Data Collection & Cleaning",
+      "Data collection, cleaning and analysis",
       "Statistical & Risk Analysis Support",
       "Financial Modeling Assistance",
       "Reporting & Documentation",
@@ -52,6 +56,8 @@ export const SERVICES: Service[] = [
       "Build responsive websites using WordPress, Elementor, HTML, CSS, JavaScript and other front-end technologies.",
       "Build and edit WordPress websites using Elementor Pro, JetEngine, JetSmartFilters, JetFormBuilder and WPML.",
       "Build and customise Shopify websites including shopfront layouts, content and user experience.",
+      "Accounting system package implementation (Sage 50, Sage Evolution, Pastel Partner), Palladium, Xero, Odoo.",
+      "Accounting Information Systems: AI automation."
     ],
   },
 ];
