@@ -1203,6 +1203,16 @@ html.menu-open {
   color: #fff;
 }
 
+.enquiry-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.enquiry-error {
+  margin: 0;
+  color: #ffb4a8;
+}
+
 .enquiry-thanks {
   padding: 48px 0;
   text-align: center;

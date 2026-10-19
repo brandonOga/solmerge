@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useTransition, type FormEvent } from "react";
+import { sendEnquiry } from "@/app/actions/enquiry";
 import Button from "@/components/Button";
 
 const COUNTRY_CODE = "+263";
@@ -19,12 +20,25 @@ function formatPhone(raw: string) {
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+  const [sending, startSending] = useTransition();
   const [phone, setPhone] = useState(`${COUNTRY_CODE} `);
 
-  // TODO: send the enquiry to a backend or email service.
+  // Submitted by hand rather than through the form's action prop, so the
+  // fields keep what was typed if sending fails
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const data = new FormData(e.currentTarget);
+    setError("");
+    startSending(async () => {
+      try {
+        const result = await sendEnquiry(data);
+        if (result.ok) setSent(true);
+        else setError(result.error);
+      } catch {
+        setError("Sorry, your enquiry couldn't be sent. Please email or call us instead.");
+      }
+    });
   }
 
   return (
@@ -103,8 +117,26 @@ export default function ContactForm() {
             <span className="sr-only">How can we help?</span>
             <textarea name="message" rows={3} placeholder="How can we help?" />
           </label>
-          <Button type="submit" className="enquiry-submit">
-            Send enquiry
+          {/* Spam trap: hidden from people, but bots fill it in */}
+          <input
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="sr-only"
+          />
+          {error && (
+            <p className="enquiry-error" role="alert">
+              {error}
+            </p>
+          )}
+          <Button
+            type="submit"
+            className="enquiry-submit"
+            disabled={sending}
+            aria-busy={sending}
+          >
+            {sending ? "Sending…" : "Send enquiry"}
           </Button>
         </div>
       )}
