@@ -6,10 +6,12 @@ import ServicesTabs from "@/components/ServicesTabs";
 import SiteFooter from "@/components/SiteFooter";
 import Reveal from "@/components/Reveal";
 import SiteHeader from "@/components/SiteHeader";
+import StructuredData from "@/components/StructuredData";
 
 export default function Home() {
   return (
     <div className="page">
+      <StructuredData />
       <Preloader />
       <SiteHeader />
 
