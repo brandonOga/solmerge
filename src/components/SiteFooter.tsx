@@ -9,31 +9,32 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import ContactForm from "@/components/ContactForm";
+import { CONTACT, SITE } from "@/lib/site";
 
 const CHANNELS = [
   {
     icon: FaWhatsapp,
     title: "Send us a message",
-    label: "+263 71 744 6715",
-    href: "https://wa.me/263717446715",
+    label: CONTACT.phone,
+    href: `https://wa.me/${CONTACT.phoneE164.slice(1)}`,
   },
   {
     icon: FaPhoneVolume,
     title: "Call us",
-    label: "+263 71 744 6715",
-    href: "tel:+263717446715",
+    label: CONTACT.phone,
+    href: `tel:${CONTACT.phoneE164}`,
   },
   {
     icon: FaEnvelope,
     title: "Send an email",
-    label: "solmergefa@gmail.com",
-    href: "mailto:solmergefa@gmail.com",
+    label: CONTACT.email,
+    href: `mailto:${CONTACT.email}`,
   },
   {
     icon: FaLocationDot,
     title: "Visit us",
-    label: "6 Rivonia Road, Mt Pleasant, Harare",
-    href: "https://maps.google.com/?q=6+Rivonia+Road,+Mt+Pleasant,+Harare",
+    label: `${CONTACT.address.street}, ${CONTACT.address.locality}, ${CONTACT.address.city}`,
+    href: CONTACT.mapsUrl,
   },
 ];
 
@@ -117,7 +118,7 @@ export default function SiteFooter() {
 
       <div className="footnote">
         <div className="container footnote-inner">
-          <span className="text-sm!">© 2026 SolMerge Financial Advisory (Pvt) Ltd</span>
+          <span className="text-sm!">© 2026 {SITE.legalName}</span>
           <span className="text-sm!">Design &amp; Code by Brandon</span>
         </div>
       </div>

@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // Both Satoshi weights are registered as one family; which one headings use
@@ -26,10 +27,51 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+// The share image comes from opengraph-image.tsx, which Next.js adds to the
+// openGraph and twitter tags automatically
 export const metadata: Metadata = {
-  title: "SolMerge Financial Advisory",
-  description:
-    "Finance, IT Solutions and Actuarial Services, with insights that drive smarter decisions and sustainable growth.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE.title,
+    template: `%s | ${SITE.name}`,
+  },
+  description: SITE.description,
+  keywords: SITE.keywords,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.legalName, url: SITE_URL }],
+  creator: SITE.legalName,
+  publisher: SITE.legalName,
+  category: "Finance",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_ZW",
+    url: "/",
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  // Stops iOS Safari turning numbers in the copy into phone links
+  formatDetection: { telephone: false },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b1f3f",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
